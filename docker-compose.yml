@@ -3,7 +3,7 @@ services:
     image: mysql:8
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_ROOT_PASSWORD: Bhargavi@1234
       MYSQL_DATABASE: albumdb
     ports:
       - "3307:3306"
