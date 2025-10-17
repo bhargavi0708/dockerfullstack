@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./albumtrackerbackend
-          file: ./albumtrackerbackend/albumtrackerbackend.Dockerfile
+          file: ./albumtrackerbackend/albumtrackerbackend.dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-backend-practice:latest
 
@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./albumtrackerfrontend
-          file: ./albumtrackerfrontend/albumtrackerfrontend.Dockerfile
+          file: ./albumtrackerfrontend/albumtrackerfrontend.dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-frontend-practice:latest
 
