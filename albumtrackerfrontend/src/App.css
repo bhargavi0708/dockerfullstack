@@ -1,0 +1,123 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f0f4f8;
+}
+
+h1, h2, h3 {
+  color: #333;
+  text-align: center;
+}
+
+.album-manager {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 50px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.album-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.album-form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.album-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  background-color: #28a745; /* Green for Add/Update */
+}
+
+.album-form button:hover {
+  background-color: #218838;
+}
+
+.album-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.album-item {
+  background-color: #e9f5ff;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between; /* one-line layout */
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.album-item span {
+  font-size: 14px;
+}
+
+.album-item button {
+  margin-left: 8px;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+}
+
+.album-item button:first-child {
+  background-color: #ffc107; /* Yellow for Edit */
+  color: black;
+}
+
+.album-item button:first-child:hover {
+  background-color: #e0a800;
+}
+
+.album-item button:last-child {
+  background-color: #dc3545; /* Red for Delete */
+}
+
+.album-item button:last-child:hover {
+  background-color: #b52a37;
+}
+.album-item {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between boxes */
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #e9f5ff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.album-box {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  min-width: 80px; /* optional: same width for uniformity */
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.album-buttons {
+  margin-left: auto; /* push buttons to the right */
+  display: flex;
+  gap: 8px;
+}
