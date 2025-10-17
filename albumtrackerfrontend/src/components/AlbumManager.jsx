@@ -1,22 +1,24 @@
+// src/components/AlbumManager.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import config from "../config";
-import "../App.css"; // import colorful CSS
+import "../App.css";
 
 const AlbumManager = () => {
   const [albums, setAlbums] = useState([]);
   const [formData, setFormData] = useState({ title: "", artist: "", genre: "", year: "" });
   const [editId, setEditId] = useState(null);
 
-  // Fetch all albums on load
+  // Fetch albums on component mount
   useEffect(() => {
     fetchAlbums();
   }, []);
 
   const fetchAlbums = async () => {
     try {
-      const response = await axios.get(config.url);
-      setAlbums(response.data);
+      const response = await axios.get(import.meta.env.VITE_API_URL);
+      console.log("API response:", response.data); // For debugging
+      // Ensure albums is an array
+      setAlbums(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error("Error fetching albums:", error);
     }
@@ -43,10 +45,10 @@ const AlbumManager = () => {
 
     try {
       if (editId) {
-        await axios.put(`${config.url}/${editId}`, formData);
+        await axios.put(`${import.meta.env.VITE_API_URL}/${editId}`, formData);
         setEditId(null);
       } else {
-        await axios.post(config.url, formData);
+        await axios.post(import.meta.env.VITE_API_URL, formData);
       }
       setFormData({ title: "", artist: "", genre: "", year: "" });
       fetchAlbums();
@@ -63,7 +65,7 @@ const AlbumManager = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this album?")) {
       try {
-        await axios.delete(`${config.url}/${id}`);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/${id}`);
         fetchAlbums();
       } catch (error) {
         console.error("Error deleting album:", error);
@@ -111,22 +113,21 @@ const AlbumManager = () => {
       </form>
 
       {/* Album List */}
-      <h3>Total Albums: {albums.length}</h3>
+      <h3>Total Albums: {(Array.isArray(albums) ? albums : []).length}</h3>
       <ul className="album-list">
-  {albums.map((album) => (
-    <li key={album.id} className="album-item">
-      <div className="album-box">{album.title}</div>
-      <div className="album-box">{album.artist}</div>
-      <div className="album-box">{album.genre}</div>
-      <div className="album-box">{album.year}</div>
-      <div className="album-buttons">
-        <button onClick={() => handleEdit(album)}>Edit</button>
-        <button onClick={() => handleDelete(album.id)}>Delete</button>
-      </div>
-    </li>
-  ))}
-</ul>
-
+        {(Array.isArray(albums) ? albums : []).map((album) => (
+          <li key={album.id} className="album-item">
+            <div className="album-box">{album.title}</div>
+            <div className="album-box">{album.artist}</div>
+            <div className="album-box">{album.genre}</div>
+            <div className="album-box">{album.year}</div>
+            <div className="album-buttons">
+              <button onClick={() => handleEdit(album)}>Edit</button>
+              <button onClick={() => handleDelete(album.id)}>Delete</button>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
